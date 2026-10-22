@@ -1,0 +1,235 @@
+{
+  "audit": {
+    "raw_rows": 1024,
+    "dup_rows": 49,
+    "dup_ids": 49,
+    "rows_after_dedup": 975,
+    "missing_success_raw": 32,
+    "missing_success_after_dedup": 30,
+    "analysis_rows": 945,
+    "dropped_total": 79,
+    "negative_lag": 0,
+    "lag_min": 0.0,
+    "lag_max": 70.0
+  },
+  "lag_structure": {
+    "gaps": [
+      {
+        "from": 18,
+        "to": 22,
+        "width": 3
+      }
+    ],
+    "segments": [
+      {
+        "lag_min": "lag < 20",
+        "n": 732,
+        "fail_n": 26,
+        "fail_rate": 0.03551912568306011
+      },
+      {
+        "lag_min": "20 <= lag < 22",
+        "n": 0,
+        "fail_n": 0,
+        "fail_rate": NaN
+      },
+      {
+        "lag_min": "lag >= 22",
+        "n": 213,
+        "fail_n": 75,
+        "fail_rate": 0.352112676056338
+      }
+    ]
+  },
+  "headline": {
+    "n": 945,
+    "fail_total": 101,
+    "fail_rate_total": 0.10687830687830688,
+    "stale_n": 213,
+    "stale_share": 0.2253968253968254,
+    "stale_fail_n": 75,
+    "stale_fail_rate": 0.352112676056338,
+    "fresh_n": 732,
+    "fresh_fail_n": 26,
+    "fresh_fail_rate": 0.03551912568306011,
+    "stale_share_of_all_failures": 0.7425742574257426,
+    "risk_ratio": 9.913326110509209,
+    "chi2": 173.24583357986285,
+    "p_value": 1.4463795331047568e-39,
+    "baseline_loss_yuan": 7575.0
+  },
+  "confounders": {
+    "by_store": [
+      {
+        "store_name": "和平店",
+        "n": 169,
+        "fail_rate": 0.08284023668639054,
+        "stale_share": 0.1893491124260355,
+        "fresh_n": 137,
+        "fresh_fail_rate": 0.014598540145985401
+      },
+      {
+        "store_name": "沈河店",
+        "n": 200,
+        "fail_rate": 0.105,
+        "stale_share": 0.23,
+        "fresh_n": 154,
+        "fresh_fail_rate": 0.01948051948051948
+      },
+      {
+        "store_name": "浑南店",
+        "n": 201,
+        "fail_rate": 0.14427860696517414,
+        "stale_share": 0.19900497512437812,
+        "fresh_n": 161,
+        "fresh_fail_rate": 0.037267080745341616
+      },
+      {
+        "store_name": "皇姑店",
+        "n": 186,
+        "fail_rate": 0.08064516129032258,
+        "stale_share": 0.2849462365591398,
+        "fresh_n": 133,
+        "fresh_fail_rate": 0.09022556390977443
+      },
+      {
+        "store_name": "铁西店",
+        "n": 189,
+        "fail_rate": 0.1164021164021164,
+        "stale_share": 0.2222222222222222,
+        "fresh_n": 147,
+        "fresh_fail_rate": 0.02040816326530612
+      }
+    ],
+    "store_with_residual_issue": "皇姑店",
+    "store_residual_fail_rate": 0.09022556390977443,
+    "store_others_fail_rate": 0.022938575909288154,
+    "store_residual_p_value": 0.00016446036424806382,
+    "coupon_type_range": 0.04373582973743875,
+    "hour_fresh_range": [
+      0.0,
+      0.058823529411764705
+    ],
+    "zero_quota_fresh_fail_rate": 0.17391304347826086,
+    "nonzero_quota_fresh_fail_rate": 0.031029619181946404,
+    "zero_quota_share": 0.03492063492063492
+  },
+  "strategies": {
+    "conservative": [
+      {
+        "strategy": "A. 全部强制联网校验",
+        "gated_requests": 945,
+        "gated_share": 1.0,
+        "verify_cost": 9450.0,
+        "avoided_failures": 67.4,
+        "saved_yuan": 5057.6,
+        "net_yuan": -4392.4
+      },
+      {
+        "strategy": "B. 仅额度=0 时校验",
+        "gated_requests": 33,
+        "gated_share": 0.03492063492063492,
+        "verify_cost": 330.0,
+        "avoided_failures": 6.8,
+        "saved_yuan": 512.1,
+        "net_yuan": 182.1
+      },
+      {
+        "strategy": "C. 仅滞后>=20min 时校验",
+        "gated_requests": 213,
+        "gated_share": 0.2253968253968254,
+        "verify_cost": 2130.0,
+        "avoided_failures": 67.4,
+        "saved_yuan": 5057.6,
+        "net_yuan": 2927.6
+      },
+      {
+        "strategy": "D. 滞后>=20min 或 额度=0",
+        "gated_requests": 236,
+        "gated_share": 0.24973544973544973,
+        "verify_cost": 2360.0,
+        "avoided_failures": 70.6,
+        "saved_yuan": 5296.3,
+        "net_yuan": 2936.3
+      }
+    ],
+    "optimistic": [
+      {
+        "strategy": "A. 全部强制联网校验",
+        "gated_requests": 945,
+        "gated_share": 1.0,
+        "verify_cost": 9450.0,
+        "avoided_failures": 101,
+        "saved_yuan": 7575.0,
+        "net_yuan": -1875.0
+      },
+      {
+        "strategy": "B. 仅额度=0 时校验",
+        "gated_requests": 33,
+        "gated_share": 0.03492063492063492,
+        "verify_cost": 330.0,
+        "avoided_failures": 8,
+        "saved_yuan": 600.0,
+        "net_yuan": 270.0
+      },
+      {
+        "strategy": "C. 仅滞后>=20min 时校验",
+        "gated_requests": 213,
+        "gated_share": 0.2253968253968254,
+        "verify_cost": 2130.0,
+        "avoided_failures": 75,
+        "saved_yuan": 5625.0,
+        "net_yuan": 3495.0
+      },
+      {
+        "strategy": "D. 滞后>=20min 或 额度=0",
+        "gated_requests": 236,
+        "gated_share": 0.24973544973544973,
+        "verify_cost": 2360.0,
+        "avoided_failures": 79,
+        "saved_yuan": 5925.0,
+        "net_yuan": 3565.0
+      }
+    ],
+    "threshold_best": 20,
+    "threshold_plateau": [
+      19,
+      22
+    ],
+    "threshold_best_net": 2927.6,
+    "root_fix": {
+      "strategy": "E. 根因修复: 保证同步滞后<=20min",
+      "gated_requests": 0,
+      "verify_cost": 0.0,
+      "avoided_failures": 67.4,
+      "saved_yuan": 5057.6,
+      "net_yuan": 5057.6
+    },
+    "fresh_fail_rate": 0.03551912568306011
+  },
+  "sensitivity": {
+    "缺失=失败": {
+      "n": 975,
+      "stale_fail_rate": 0.3783783783783784,
+      "fresh_fail_rate": 0.06241699867197875,
+      "rr": 6.062104657849339
+    },
+    "缺失=成功": {
+      "n": 975,
+      "stale_fail_rate": 0.33783783783783783,
+      "fresh_fail_rate": 0.034528552456839307,
+      "rr": 9.784303534303534
+    },
+    "missing_stale_share": 0.3
+  },
+  "scale": {
+    "days": 7,
+    "stores": 5,
+    "fail_per_1000": 106.87830687830687
+  },
+  "assumptions": {
+    "loss_per_failure_yuan": 75.0,
+    "cost_per_online_verify_yuan": 10.0,
+    "stale_threshold_min": 20.0
+  }
+}
